@@ -1,3 +1,6 @@
+
+
+
 // Séléctionner les aiguilles de montre
 const AIGUILLEHR = document.querySelector("#hour");
 const AIGUILLEMIN = document.querySelector("#minute");
@@ -5,8 +8,10 @@ const AIGUILLESEC = document.querySelector("#second");
 
 //Extraire l'heure actuel à l'aide de l'objet Date()
 
-
 //Ajouter l'heure , minite , seconde  dans des varaiables
+
+
+// console.log(s);
 
 
 
@@ -16,29 +21,22 @@ const AIGUILLESEC = document.querySelector("#second");
 
 // Déplacer les aiguilles 
 function demarrerLaMontre() {
-    const now = new Date();
+let date = new Date();
+let secondsRatio = date.getSeconds() / 60; // 0 - 59
+let miniteRatio = (secondsRatio + date.getMinutes()) / 60; // 0 - 59
+let hourRatio =(miniteRatio + date.getHours()) / 12; // 0 - 12
 
-
-    const seconds = now.getSeconds();
-    const secondsDegrees = (seconds*6);
-    AIGUILLESEC.style.transform = `rotate(${secondsDegrees}deg)`;
-
-
-
-      const mins = now.getMinutes();
-    const minsDegrees = (mins * 6 + (seconds / 10));
-    AIGUILLEMIN.style.transform = `rotate(${minsDegrees}deg)`;
-
-
-
-    const hour = now.getHours();
-    const hourDegrees = (hour * 30 + (mins / 2));
-    AIGUILLEHR.style.transform = `rotate(${hourDegrees}deg)`;
-
-
+triggerRotation(AIGUILLESEC, secondsRatio);
+triggerRotation(AIGUILLEMIN, miniteRatio);
+triggerRotation(AIGUILLEHR, hourRatio);
 
 }
-// Exercuter la fonction chaque second
 
+function triggerRotation(el , rotationRatio) {
+el.style.transform = ` rotate(${rotationRatio * 360}deg)`;
+}
+
+// Exercuter la fonction chaque second
 setInterval(demarrerLaMontre, 1000);
+
 demarrerLaMontre();

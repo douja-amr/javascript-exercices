@@ -39,4 +39,3 @@ el.style.transform = ` rotate(${rotationRatio * 360}deg)`;
 // Exercuter la fonction chaque second
 setInterval(demarrerLaMontre, 1000);
 
-demarrerLaMontre();

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+  var ar = [""]
+
+function ajout(){
+  var aj = prompt("your name: ")
+      ar.push(aj)
+      document.getElementById("p").innerHTML = ar
+
+}
+
+
+function delet(){
+  var rm = prompt("the name that you wanna remove: ")
+  ar.pop(rm)
+}
+
+function tri(){
+  ar.sort()
+}
+
+function tric(){
+  ar.reverse
+}
+
+  </script>
+
+
+</head>
+
+<body>
+
+  <h1>Liste des apprenants</h1>
+  <button onclick="tri()">Trier le tableau Croissant</button>
+  <button onclick="triC()">Trier le tableau DéCroissant</button>
+  <button onclick="ajout()">Ajouter un apprenant</button>
+  <button onclick="delet()">Supprimer un apprenant</button>
+  <button></button>
+  <p id="p"></p>
+</body>
+
+</html>

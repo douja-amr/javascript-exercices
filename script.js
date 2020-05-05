@@ -1,41 +1,35 @@
-
-
-
 // Séléctionner les aiguilles de montre
 const AIGUILLEHR = document.querySelector("#hour");
 const AIGUILLEMIN = document.querySelector("#minute");
 const AIGUILLESEC = document.querySelector("#second");
 
 //Extraire l'heure actuel à l'aide de l'objet Date()
+var date = new Date()
+
+
+
 
 //Ajouter l'heure , minite , seconde  dans des varaiables
-
-
-// console.log(s);
-
-
+let hr = date.getHours()
+let min = date.getMinutes()
+let sec = date.getSeconds()
+// console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec)
 
 // Calculer de degré de mouvement de l'aiguille heure, de l'aiguille minute, de l'aiguille seconde
 // Hint : Tous les aiguilles doivent se déplacer chaque second selon un degré
+let hrPosition = (hr*360/12)+(min*(360/60)/12)
+let minPosition = (min*360/60)+(sec*(360/60)/60)
+let secPosition = sec*360/60
 
-
-// Déplacer les aiguilles 
+// Déplacer les aiguilles
 function demarrerLaMontre() {
-let date = new Date();
-let secondsRatio = date.getSeconds() / 60; // 0 - 59
-let miniteRatio = (secondsRatio + date.getMinutes()) / 60; // 0 - 59
-let hourRatio =(miniteRatio + date.getHours()) / 12; // 0 - 12
+  hrPosition = hrPosition + (3/360)
+  minPosition = minPosition + (6/60)
+  secPosition = secPosition + 6
 
-triggerRotation(AIGUILLESEC, secondsRatio);
-triggerRotation(AIGUILLEMIN, miniteRatio);
-triggerRotation(AIGUILLEHR, hourRatio);
-
+  AIGUILLEHR.style.transform = "rotate(" + hrPosition + "deg)"
+  AIGUILLEMIN.style.transform = "rotate(" + minPosition + "deg)"
+  AIGUILLESEC.style.transform = "rotate(" + secPosition + "deg)"
 }
-
-function triggerRotation(el , rotationRatio) {
-el.style.transform = ` rotate(${rotationRatio * 360}deg)`;
-}
-
 // Exercuter la fonction chaque second
-setInterval(demarrerLaMontre, 1000);
-
+ setInterval(demarrerLaMontre, 1000);
